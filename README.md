@@ -4,14 +4,26 @@
 
 # svelte app
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+This is a project template for [Svelte](https://svelte.dev) apps.
+
+**It is a modified version of the [default template](https://github.com/sveltejs/template) with some pitfalls for github pages removed.**
 
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-npx degit sveltejs/template svelte-app
+npx degit DavidM42/svelte-github-pages-template svelte-app
 cd svelte-app
 ```
+
+or manually via git clone
+
+```bash
+git clone https://github.com/DavidM42/template.git svelte-app
+cd svelte-app
+rm -r .git
+```
+
+or use the template button on GitHub
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
@@ -72,34 +84,21 @@ Or remove the script via:
 rm scripts/setupTypeScript.js
 ```
 
-## Deploying to the web
+## Deploying to GitHub pages
 
-### With [Vercel](https://vercel.com)
+Everything should be set up ready to deploy to GitHub pages **even when you want to use SPA routing**.
+Just push to master of your own GitHub repo and the GitHub actions script will do the hard work for you.
 
-Install `vercel` if you haven't already:
+If you use a custom domain (instead of the nested URL structure following the `username.github.io/project-name/` schema), you have to change
 
-```bash
-npm install -g vercel
+```javascript
+var pathSegmentsToKeep = 1;
 ```
 
-Then, from within your project folder:
+to
 
-```bash
-cd public
-vercel deploy --name my-project
+```javascript
+var pathSegmentsToKeep = 0;
 ```
 
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+in `public/404.html`.
