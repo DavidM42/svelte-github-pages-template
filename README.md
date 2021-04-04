@@ -102,3 +102,24 @@ var pathSegmentsToKeep = 0;
 ```
 
 in `public/404.html`.
+
+### Routing problems
+
+As far as I know there is no good way of using svelte-router (client side routing) with a root URL containing a path already and still being able to develop it locally.
+
+For this reason I advise to use a custom (sub-)domain if you plan on using svelte-router.
+After provisioning the custom domain, you can change the static paths in `public/index.html` back to root based ones.
+
+```html
+<link rel='icon' type='image/png' href='favicon.png'>
+<link rel='stylesheet' href='global.css'>
+<link rel='stylesheet' href='build/bundle.css'>
+<script defer src='build/bundle.js'></script>
+<!-- TO -->
+<link rel='icon' type='image/png' href='/favicon.png'>
+<link rel='stylesheet' href='/global.css'>
+<link rel='stylesheet' href='/build/bundle.css'>
+<script defer src='/build/bundle.js'></script>
+```
+
+Following these changes your use of svelte-router in GitHub pages should hopefully work.
